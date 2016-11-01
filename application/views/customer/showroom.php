@@ -6,7 +6,6 @@
 			</div>
 			<div class="col-md-2">
 				<a href="<?php echo site_url('customer/showroom/addShowroom');?> " class="btn btn-primary"><i class="fa fa-plus"></i></a>
-				<button class="btn btn-danger"><i class="fa fa-remove"></i></button>
 			</div>
 		</div>
     </section>
@@ -71,7 +70,10 @@
 												<td class="text-left"><?php echo $row['city_name'].', '. $row['provinces_name']; ?></td>
 												<td class="text-left"><?php echo $row['address']; ?></td>
 												<td class="text-left">Enabled</td>
-												<td class="text-right"><a href="<?php echo site_url('customer/showroom/edit/').$row['showroom_id']; ?>" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="Edit"><i class="fa fa-pencil"></i></a></td>
+												<td class="text-right">
+													<a href="<?php echo site_url('customer/showroom/edit/').$row['showroom_id']; ?>" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
+													<a href="<?php echo site_url('customer/showroom/delete/').$row['showroom_id']; ?>" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Edit"><i class="fa fa-remove"></i></a>
+												</td>
 											</tr>
 										<?php } } else { ?>
 											<tr class="text-center"><td colspan="7">No showroom added</td></tr>

@@ -6,10 +6,9 @@ class Showroom extends Customer {
 	public function __construct()
 	{
 		parent::__construct();
-		$this->load->model('showroom_model');
 	}
 
-        public function index()
+    public function index()
 	{
 		$user_id = $_SESSION['customer']['id'];
 		$this->data['showroom'] = $this->showroom_model->selectAllShowrooms($user_id);
@@ -17,7 +16,7 @@ class Showroom extends Customer {
 		$this->load->customer_template('showroom', $this->data);
 	}
         
-        public function edit($id)
+    public function edit($id)
 	{
 		$data = array(
 			'showroom' => $this->showroom_model->selectById($id),
@@ -26,12 +25,10 @@ class Showroom extends Customer {
 		$this->load->customer_template('editshowroom', $data);
 	}
 	
-        public function addShowroom()
+    public function addShowroom()
 	{
-		$data = array(
-                    'province' => $this->showroom_model->selectAllProvinces()
-		);
-		$this->load->customer_template('addshowroom', $data);
+		$this->data['province'] = $this->showroom_model->selectAllProvinces();
+		$this->load->customer_template('addshowroom', $this->data);
 	}
         
 	public function selectCitiesByProvinceId($id)
@@ -41,11 +38,10 @@ class Showroom extends Customer {
 	}
         
 	
-	
 	public function saveShowroom()
 	{
 		
-		$target_dir = "./assets/customer/img/uploads/showroom/";
+		/*$target_dir = "./assets/customer/img/uploads/showroom/";
 		$target_file = $target_dir . basename($_FILES["showroom_image"]["name"]);
 		$uploadOk = 1;
 		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
@@ -87,8 +83,8 @@ class Showroom extends Customer {
 			} else {
 				echo "Sorry, there was an error uploading your file.";
 			}
-		}
-		$data = array(
+		}*/
+		$this->data = array(
 			'user_id' => $_SESSION['customer']['id'],
 			'showroom_name' => $_POST['showroom_name'],
 			'owner_name' => $_POST['showroom_owner'],
@@ -100,8 +96,53 @@ class Showroom extends Customer {
 			'showroom_image' => str_replace('.','',$target_dir) . $_FILES["showroom_image"]["name"]
 		);
 		
-		$this->addshowroom_model->saveShowroom($data);
-		redirect('customer/AddShowroom/index');
+		$return = $this->saveImage($this->data['showroom_image']);
+		
+		if($return === true)
+		{
+			$this->showroom_model->insert($this->data);
+			redirect('customer/showroom/index');
+		} else {
+			$this->data['error'] = $return;
+			$this->load->customer_template('addshowroom', $this->data);
+		}
+	}
+	
+	public function saveImage($image)
+	{
+		$message = '';
+		$target_dir = "./assets/customer/img/uploads/showroom/";
+		$target_file = $target_dir . basename($image);
+		$uploadOk = 1;
+		$imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
+		
+		if (file_exists($target_file)) {
+			$message = "Sorry, file already exists.";
+			return $message;
+			$uploadOk = 0;
+		}
+		// Check file size
+		if ($_FILES["showroom_image"]["size"] > 500000) {
+			echo "Sorry, your file is too large.";
+			$uploadOk = 0;
+		}
+		// Allow certain file formats
+		if($imageFileType != "jpg" && $imageFileType != "PNG" && $imageFileType != "jpeg"
+		&& $imageFileType != "gif" ) {
+			echo "Sorry, only JPG, JPEG, PNG & GIF files are allowed.";
+			$uploadOk = 0;
+		}
+		// Check if $uploadOk is set to 0 by an error
+		if ($uploadOk == 0) {
+			echo "Sorry, your file was not uploaded.";
+		// if everything is ok, try to upload file
+		} else {
+			if (move_uploaded_file($_FILES["showroom_image"]["tmp_name"], $target_file)) {
+				echo "The file ". basename( $image ) . " has been uploaded.";
+			} else {
+				echo "Sorry, there was an error uploading your file.";
+			}
+		}
 	}
 	
 	public function selectCarByManufacturer($id)

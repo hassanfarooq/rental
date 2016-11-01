@@ -18,8 +18,10 @@
 						<h3 class="panel-title"><i class="fa fa-list"></i> Add Showroom</h3>
 					</div>
                     <div class="panel-body">
-						<form action="<?php echo site_url('customer/addshowroom/saveShowroom');?> " method="post" enctype="multipart/form-data" id="form-product">
-
+						<form action="<?php echo site_url('customer/showroom/saveShowroom');?> " method="post" enctype="multipart/form-data" id="form-product">
+							<?php if(isset($error)) { ?>
+							<div class="alert alert-danger"><?php echo $error; ?></div>
+							<?php } ?>
 							<div class="form-group">
 								<label class="control-label" for="input-model">Showroom Name</label>
 								<input type="text" name="showroom_name" value="" placeholder="Showroom Name" id="input-location" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>

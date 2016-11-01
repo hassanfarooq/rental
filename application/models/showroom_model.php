@@ -24,13 +24,8 @@ class showroom_model extends MY_Model {
         }
         return false;
     }
-	public function saveShowroom($data)
-	{
-		$this->db->insert('showroom', $data); 
-	}
-	
         
-        public function selectById($id)
+    public function selectById($id)
     {
         $sql = "select * from showroom where showroom_id = ".$id;
         $result = $this->db->query($sql);
