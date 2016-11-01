@@ -76,8 +76,7 @@ class Customer extends CI_Controller {
 		$this->init();
 	}
 	
-	public function init()
-	{
+	public function init(){
 		$this->loadModels();
 		$this->setTableToModel();
 	}
@@ -92,8 +91,7 @@ class Customer extends CI_Controller {
 		return false;
 	}
         
-    private function loadModels()
-	{
+    private function loadModels(){
 		$models = array(
             "showroom_model",
             "car_model",
@@ -111,8 +109,7 @@ class Customer extends CI_Controller {
 		
 	}
 	
-	private function assignModelInstance()
-    {
+	private function assignModelInstance(){
         $this->showroom_model = new showroom_model();
         $this->car_model = new car_model();
         $this->detail_model = new detail_model();
@@ -122,8 +119,7 @@ class Customer extends CI_Controller {
         $this->user_model = new user_model();
     }
 	
-	private function setTableToModel()
-	{
+	private function setTableToModel(){
 		$this->car_model->setTable('car');
 		$this->showroom_model->setTable('showroom');
 		$this->profile_model->setTable('profile_model');

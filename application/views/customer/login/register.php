@@ -43,6 +43,11 @@
                 <input type="password" name="confirm_password" class="form-control" placeholder="Retype password">
                 <span class="glyphicon glyphicon-log-in form-control-feedback"></span>
             </div>
+			<small>Choose your profile image</small>
+			<div class="form-group has-feedback">
+                <input type="file" name="image" class="form-control">
+                <span class="fa fa-file-image-o form-control-feedback"></span>
+            </div>
             <div class="row">
                 <div class="col-xs-8">
                     <div class="checkbox icheck">

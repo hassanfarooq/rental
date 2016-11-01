@@ -4,10 +4,10 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="<?php echo base_url('assets/customer/img/profile-default.jpg'); ?>" class="img-circle" alt="User Image">
+        <img src="<?php echo base_url() . get_logindata('image'); ?>" class="img-circle" alt="User Image">
       </div>
       <div class="pull-left info">
-        <p>Hi, <?php echo ucwords(get_logindata('name')); ?></p>
+        <p>Hi, <?php echo ucwords(get_logindata('name')); ?> <small>(<?php echo ucwords(get_logindata('role_name')); ?>)</small></p>
         <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
       </div>
     </div>

@@ -4,8 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Login extends CI_Controller {
 
-    public function __construct()
-    {
+    public function __construct() {
         parent::__construct();
         $this->load->model('user_model');
     }
@@ -24,12 +23,18 @@ class Login extends CI_Controller {
         $return = $this->form_validate($data);
         if($return === true)
         {
+			$target_dir = "./uploads/";
             $result = array(
                 'username' => $data['name'],
                 'email'=> $data['email'],
                 'password' => md5($data['password']),
-                'role_id' => 2
+                'role_id' => 2,
+				'user_image' => str_replace('.','',$target_dir) . $_FILES["image"]["name"]
             );
+			
+			$image = saveImage($result['user_image']);
+			var_dump($image); exit;
+
             $this->getConfirmation($this->user_model->create($result));
         }
         else
@@ -39,8 +44,7 @@ class Login extends CI_Controller {
         }
     }
 
-    private function form_validate($data)
-    {
+    private function form_validate($data){
         $this->load->library('form_validation');
         $this->form_validation->set_rules('name', 'Username', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
@@ -56,8 +60,7 @@ class Login extends CI_Controller {
         }
     }
 
-    private function getConfirmation($id)
-    {
+    private function getConfirmation($id){
         if($id)
         {
             $this->session->set_userdata('flashData', array(
@@ -99,7 +102,7 @@ class Login extends CI_Controller {
                 "status" => 'error',
                 "message" => 'Email and Password is required'
             ));
-        }
+        }		
         redirect('Customer/Dashboard');
     }
 
