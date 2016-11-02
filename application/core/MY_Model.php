@@ -17,7 +17,7 @@ class MY_Model extends CI_Model {
         $this->db->where($column, $value);
         $result = $this->db->get($this->table);
         if($result->num_rows() > 0) {
-            return $result;
+            return $result->result_array();
         }
         return FALSE;
     }
@@ -25,7 +25,7 @@ class MY_Model extends CI_Model {
     public function get_all(){
         $result = $this->db->get($this->table);
         if($result->num_rows() > 0) {
-            return $result;
+            return $result->result_array();
         }
         return FALSE;
     }

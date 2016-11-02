@@ -48,24 +48,24 @@
           <!-- About Me Box -->
           <div class="box box-primary">
             <div class="box-header with-border">
-              <h3 class="box-title">Basic Information</h3>
+              <h3 class="box-title">About Me</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <strong><i class="fa fa-book margin-r-5"></i> Contact Information</strong>
+              <strong><i class="fa fa-book margin-r-5"></i> Education</strong>
 
-              <p class="text-muted">CNIC: <?php echo $user_data[0]['cnic']; ?><br/>Phone: <?php echo $user_data[0]['contact_no']; ?></p>
+              <p class="text-muted">
+                B.S. in Computer Science from the University of Tennessee at Knoxville
+              </p>
 
               <hr>
 
               <strong><i class="fa fa-map-marker margin-r-5"></i> Location</strong>
 
-                <p class="text-muted">
-					<?php echo $user_data[0]['address']; ?>, <?php echo $user_data[0]['postal_code']; ?><br/><?php echo $user_data[0]['provinces_name']; ?>, <?php echo $user_data[0]['city_name']; ?>
-				</p>
+              <p class="text-muted">Malibu, California</p>
               <hr>
-              <strong><i class="fa fa-file-text-o margin-r-5"></i> About Me</strong>
-              <p><?php echo $user_data[0]['about']; ?></p>
+              <strong><i class="fa fa-file-text-o margin-r-5"></i> Notes</strong>
+              <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Etiam fermentum enim neque.</p>
             </div>
             <!-- /.box-body -->
           </div>
@@ -81,29 +81,23 @@
               <div class="active tab-pane" id="personal_details">
                 <form action="<?php echo site_url('customer/profile/profileInfo'); ?>" class="form-horizontal" method="post">
                   <div class="form-group">
-                    <label for="username" class="col-sm-2 control-label">User Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" name="username" class="form-control" id="username" placeholder="User name">
-                    </div>
-                  </div>
-				  <div class="form-group">
                     <label for="CNIC" class="col-sm-2 control-label">CNIC</label>
                     <div class="col-sm-10">
-                      <input type="text" name="cnic" value="" class="form-control" id="CNIC" placeholder="CNIC">
+                      <input type="text" name="cnic" class="form-control" id="CNIC" placeholder="CNIC">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="contactno" class="col-sm-2 control-label">Contact No</label>
                     <div class="col-sm-10">
-                      <input type="text" name="contact" class="form-control" id="contactno" placeholder="Contact no">
+                      <input type="text" name="contact" class="form-control" id="contactno" placeholder="Contactno">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="Province" class="col-sm-2 control-label">Province</label>
                     <div class="col-sm-10">
-                      <select class="form-control" id="select-province" name="province">
-						<?php foreach($provinces as $row) { ?>
-							<option value="<?php echo $row['provinces_id']; ?>"><?php echo $row['provinces_name']; ?></option>
+                      <select class="form-control" name="province">
+						<?php foreach($provinces as $row) {?> 
+							<option value="<?php echo $row['province_id']; ?>"><?php echo $row['province_name']; ?></option>
 						<?php } ?>
 					  </select>
                     </div>
@@ -111,13 +105,13 @@
                   <div class="form-group">
                     <label for="City" class="col-sm-2 control-label">City</label>
                     <div class="col-sm-10">
-                      <select class="form-control" id="select-city" name="city"></select>
+                      <input type="text" name="city" class="form-control" id="City" placeholder="City">
                     </div>
                   </div>
                   <div class="form-group">
                     <label for="DOB" class="col-sm-2 control-label">Date Of Birth</label>
                     <div class="col-sm-10">
-                      <input type="date" name="dob" class="form-control" id="DOB" placeholder="Date Of Birth">
+                      <input type="date" name="d.o.b" class="form-control" id="DOB" placeholder="Date Of Birth">
                     </div>
                   </div>
                   <div class="form-group">
@@ -137,23 +131,20 @@
                   </div>
 
                   <div class="form-group">
+                    <label for="status" class="col-sm-2 control-label">Status</label>
+
+                    <div class="col-sm-10">
+                      <input type="text" name="status" class="form-control" id="status" placeholder="Status">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
                     <label for="about" class="col-sm-2 control-label">About</label>
 
                     <div class="col-sm-10">
                       <textarea class="form-control" name="about" id="about" placeholder="Address"></textarea>
                     </div>
                   </div>
-				  
-				  <div class="form-group">
-                    <label for="status" class="col-sm-2 control-label">Status</label>
-                    <div class="col-sm-10">
-                      <select class="form-control" name="status">
-						<option value="1">Enable</option>
-						<option value="0">Disable</option>
-					  </select>
-                    </div>
-                  </div>
-				  
                   <div class="form-group">
                     <label for="image" class="col-sm-2 control-label">Image</label>
                     <div class="col-sm-10">
