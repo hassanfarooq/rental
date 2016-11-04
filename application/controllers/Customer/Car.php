@@ -5,19 +5,22 @@ class Car extends Customer {
 	
     public function __construct()
     {
-            parent::__construct();
-            $this->load->model('car_model');
+		parent::__construct();
+		$this->load->model('My_Model');
     }
 
     public function index()
     {
-            $user_id = $_SESSION['customer']['id'];
-            $data = array(
-                    'showroom_list' => $this->car_model->selectAllShowroomByUserId($user_id),
-                    'model' => $this->car_model->SelectAllModels(),
-                    'cars' => $this->car_model->selectAlLCarsByShowroom($user_id)
-            );
-            $this->load->customer_template('cars',$data);
+		
+		$user_id = get_logindata('id');
+		
+		$this->setTable('showroom');
+		$this->data['showroom_list'] = $this->car_model->get('user_id', $user_id);
+		$this->setTable('showroom');
+		$this->data['model'] = $this->car_model->get_all();
+		$this->data['car'] = $this->car_model->selectAlLCarsByShowroom($user_id);
+		
+		$this->load->customer_template('cars', true);
     }
 
     public function edit($id)
@@ -104,6 +107,13 @@ class Car extends Customer {
     
     public function addCar()
     {
-            $this->load->customer_template('addcars',true);
+		$user_id = get_logindata('id');
+		
+		$this->setTable('showroom');
+		$this->data['showroom_list'] = $this->car_model->get('user_id', $user_id);
+		//$this->data['model'] = $this->car_model->get_all();
+		$this->data['car'] = $this->car_model->selectAlLCarsByShowroom($user_id);
+		
+		$this->load->customer_template('addcars', $this->data);
     }	
 }

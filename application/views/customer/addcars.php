@@ -15,14 +15,27 @@
             <div class="col-md-12">
                 <div class="box box-primary">
                     <div class="panel-heading">
-						<h3 class="panel-title"><i class="fa fa-list"></i> Add Showroom</h3>
+						<h3 class="panel-title"><i class="fa fa-list"></i> Add Car</h3>
 					</div>
                     <div class="panel-body">
 						<form action="<?php echo site_url('customer/addshowroom/saveShowroom');?> " method="post" enctype="multipart/form-data" id="form-product">
-
+						
 							<div class="form-group">
-								<label class="control-label" for="input-model">Showroom Name</label>
-								<input type="text" name="showroom_name" value="" placeholder="Showroom Name" id="input-location" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
+								<label class="control-label" for="input-model">Select Car</label>
+								<select class="form-control">
+									<?php foreach($showroom_list as $row) { ?>
+										<option value="<?php echo $row['showroom_id']; ?>"><?php echo $row['showroom_name']; ?></option>
+									<?php } ?>								
+								</select>
+							</div>
+							
+							<div class="form-group">
+								<label class="control-label" for="input-model">Select Showroom</label>
+								<select class="form-control">
+									<?php foreach($showroom_list as $row) { ?>
+										<option value="<?php echo $row['showroom_id']; ?>"><?php echo $row['showroom_name']; ?></option>
+									<?php } ?>								
+								</select>
 							</div>
 						
 							<div class="form-group">

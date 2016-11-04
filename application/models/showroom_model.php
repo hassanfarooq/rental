@@ -58,5 +58,10 @@ class showroom_model extends MY_Model {
             return $result;
         }
         return false;
-    }	
+    }
+		
+	public function AddShowroom($data) {
+		$this->setTable('showroom');
+		return $this->insert($data);
+	}	
 }

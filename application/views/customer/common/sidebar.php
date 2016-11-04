@@ -4,7 +4,11 @@
     <!-- Sidebar user panel -->
     <div class="user-panel">
       <div class="pull-left image">
-        <img src="<?php echo base_url() . get_logindata('image'); ?>" class="img-circle" alt="User Image">
+		<?php if(get_logindata('image')) { ?>
+			<img class="profile-user-img img-responsive img-circle" src="<?php echo base_url() . get_logindata('image'); ?>" alt="User profile picture">
+		<?php } else { ?>
+			<img class="img-circle" src="<?php echo base_url('uploads/profile-default.jpg'); ?>" alt="User profile picture">
+		<?php } ?>
       </div>
       <div class="pull-left info">
         <p>Hi, <?php echo ucwords(get_logindata('name')); ?> <small>(<?php echo ucwords(get_logindata('role_name')); ?>)</small></p>

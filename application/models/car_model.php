@@ -38,26 +38,10 @@ class car_model extends MY_Model {
 
 	public function selectAllShowroomByUserId($id)
 	{
-		$sql = "select * from showroom where user_id = " . $id;
-		$result = $this->db->query($sql);
-		if($result->num_rows() > 0)
-		{
-			$result = $result->result_array();
-			return $result;
-		}
-		return false;
+		$this->setTable('showroom');
+		return $this->get('user_id', $id);
 	}
-	Public function SelectAllModels()
-	{
-		$sql = "select * from models";
-		$result = $this->db->query($sql);
-		if($result->num_rows() > 0)
-		{
-			$result = $result->result_array();
-			return $result;
-		}
-		return false;
-	}
+	
     public function selectAlLCarsByShowroom($id)
 	{
 		$sql = "select

@@ -14,12 +14,17 @@
     <!-- Main content -->
     <section class="content">
       <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-4">
 
           <!-- Profile Image -->
           <div class="box box-primary">
             <div class="box-body box-profile">
-              <img class="profile-user-img img-responsive img-circle" src="../../dist/img/user4-128x128.jpg" alt="User profile picture">
+			
+				<?php if(isset($user_data[0]['image'])) { ?>
+					<img class="profile-user-img img-responsive img-circle" src="<?php echo base_url() . $user_data[0]['image']; ?>" alt="User profile picture">
+				<?php } else { ?>
+					<img class="profile-user-img img-responsive img-circle" src="<?php echo base_url('uploads/profile-default.jpg'); ?>" alt="User profile picture">
+				<?php } ?>
 
               <h3 class="profile-username text-center"><?php echo ucwords(get_logindata('name')); ?></h3>
 
@@ -54,7 +59,7 @@
             <div class="box-body">
               <strong><i class="fa fa-book margin-r-5"></i> Contact Information</strong>
 
-              <p class="text-muted">CNIC: <?php echo $user_data[0]['cnic']; ?><br/>Phone: <?php echo $user_data[0]['contact_no']; ?></p>
+              <p class="text-muted">CNIC: <?php echo $user_data[0]['CNIC']; ?><br/>Phone: <?php echo $user_data[0]['contact_no']; ?></p>
 
               <hr>
 
@@ -72,20 +77,14 @@
           <!-- /.box -->
         </div>
         <!-- /.col -->
-        <div class="col-md-9">
+        <div class="col-md-8">
           <div class="nav-tabs-custom">
             <ul class="nav nav-tabs">
               <li class="active"><a href="#personal_details" data-toggle="tab">Personal Details</a></li>
             </ul>
             <div class="tab-content">
               <div class="active tab-pane" id="personal_details">
-                <form action="<?php echo site_url('customer/profile/profileInfo'); ?>" class="form-horizontal" method="post">
-                  <div class="form-group">
-                    <label for="username" class="col-sm-2 control-label">User Name</label>
-                    <div class="col-sm-10">
-                      <input type="text" name="username" class="form-control" id="username" placeholder="User name">
-                    </div>
-                  </div>
+                <form action="<?php echo site_url('customer/profile/profileInfo'); ?>" class="form-horizontal" method="post" enctype="multipart/form-data">
 				  <div class="form-group">
                     <label for="CNIC" class="col-sm-2 control-label">CNIC</label>
                     <div class="col-sm-10">
@@ -102,6 +101,7 @@
                     <label for="Province" class="col-sm-2 control-label">Province</label>
                     <div class="col-sm-10">
                       <select class="form-control" id="select-province" name="province">
+						<option value="0">Select Province</option>
 						<?php foreach($provinces as $row) { ?>
 							<option value="<?php echo $row['provinces_id']; ?>"><?php echo $row['provinces_name']; ?></option>
 						<?php } ?>
@@ -157,7 +157,8 @@
                   <div class="form-group">
                     <label for="image" class="col-sm-2 control-label">Image</label>
                     <div class="col-sm-10">
-                      <input type="file" name="image" id="image" >
+						<label class="control-label" for="input-status">Showroom Image</label>
+						<input type="file" name="image">
                     </div>
                   </div>
 

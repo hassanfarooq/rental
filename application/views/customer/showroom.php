@@ -5,7 +5,7 @@
 				<h1 style="margin-top:0px;">My Showroom</h1>
 			</div>
 			<div class="col-md-2">
-				<a href="<?php echo site_url('customer/showroom/addShowroom');?> " class="btn btn-primary"><i class="fa fa-plus"></i></a>
+				<a href="<?php echo site_url('customer/showroom/addShowroom');?> " class="btn btn-primary"><i class="fa fa-plus"></i> Add Showroom</a>
 			</div>
 		</div>
     </section>
@@ -45,7 +45,7 @@
 							</div>
 						  </div>
 						</div>
-						<form action="http://demo.opencart.com/admin/index.php?route=catalog/product/delete&amp;token=df780afe7632bbbfb65f058280860c36" method="post" enctype="multipart/form-data" id="form-product">
+						<form action="#" method="post" enctype="multipart/form-data" id="form-product">
 							<div class="table-responsive">
 								<table class="table table-bordered table-hover showroom_table">
 									<thead>
@@ -72,7 +72,7 @@
 												<td class="text-left">Enabled</td>
 												<td class="text-right">
 													<a href="<?php echo site_url('customer/showroom/edit/').$row['showroom_id']; ?>" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="Edit"><i class="fa fa-pencil"></i></a>
-													<a href="<?php echo site_url('customer/showroom/delete/').$row['showroom_id']; ?>" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Edit"><i class="fa fa-remove"></i></a>
+													<a href="<?php echo site_url('customer/showroom/deleteShowroom/').$row['showroom_id']; ?>" data-toggle="tooltip" title="" class="btn btn-danger" data-original-title="Edit"><i class="fa fa-remove"></i></a>
 												</td>
 											</tr>
 										<?php } } else { ?>

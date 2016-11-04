@@ -29,11 +29,7 @@ class Login extends CI_Controller {
                 'email'=> $data['email'],
                 'password' => md5($data['password']),
                 'role_id' => 2,
-				'user_image' => str_replace('.','',$target_dir) . $_FILES["image"]["name"]
             );
-			
-			$image = saveImage($result['user_image']);
-			var_dump($image); exit;
 
             $this->getConfirmation($this->user_model->create($result));
         }

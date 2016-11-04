@@ -10,7 +10,7 @@ class Site extends CI_Controller {
 			$keywords = 'car, showroom'; // meta keywords
 
 	// Global variable that stores model instance
-	public  $cars_model; // Car model
+	public $cars_model; // Car model
 
 	// Setting up variable that contain all view data
 	public $data = array();
@@ -33,7 +33,6 @@ class Site extends CI_Controller {
 		$this->load->model('car_model');
 		$this->load->model('showroom_model');
 		$this->load->model('home_model');
-		//$this->cars_model = new $this->car_model();
 	}
 
 	private function setTableToModel()
@@ -58,12 +57,12 @@ class Customer extends CI_Controller {
 			$keywords = 'car, showroom'; // meta keywords
 
 	public  $showroom_model, //showroom Model instance
-		$car_model, //car Model instance
-		$detail_model, //detail Model instance
-		$home_model, //home Model instance
-		$profile_model, //profile Model instance
-		$search_model, //search Model instance
-		$user_model; //user Model instance
+			$car_model, //car Model instance
+			$detail_model, //detail Model instance
+			$home_model, //home Model instance
+			$profile_model, //profile Model instance
+			$search_model, //search Model instance
+			$user_model; //user Model instance
 		
 	// Setting up variable that contain all view data
 	public $data = array();
@@ -76,11 +75,13 @@ class Customer extends CI_Controller {
 		$this->init();
 	}
 	
-	public function init(){
+	/* Initializing and load Application Models */
+	public function init() {
 		$this->loadModels();
 		$this->setTableToModel();
 	}
 
+	/* Check User session or login */
 	public function is_login_customer() {
 		$check_session = $this->session->userdata('customer');
 		if(isset($check_session) && !empty($check_session)) {
@@ -91,6 +92,7 @@ class Customer extends CI_Controller {
 		return false;
 	}
         
+	/* Loading Models */	
     private function loadModels(){
 		$models = array(
             "showroom_model",
