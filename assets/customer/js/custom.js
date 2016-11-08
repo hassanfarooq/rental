@@ -37,6 +37,7 @@ $('#select-manufacturer').on('click', function() {
     url: "selectCarByManufacturer/" + manf_id,
     dataType: 'json',
     success: function(data){
+	  console.log(data);
 	  var html = '';
 	  for(var i = 0; i < data.cars.length; i++) 
 	  {

@@ -12,10 +12,10 @@ class Profile extends customer{
 	
     public function index(){
 
-        $this->data['showroom_count'] = $this->profile_model->showroomCount();
-		$this->data['cars_count'] = $this->profile_model->carscount();
-		$this->data['provinces'] = $this->profile_model->selectProvinces();
-		$this->data['user_data'] = $this->profile_model->selectUserProfile();
+        $this->data['showroom_count'] = $this->user_profile_model->showroomCount();
+		$this->data['cars_count'] = $this->user_profile_model->carscount();
+		$this->data['provinces'] = $this->user_profile_model->selectProvinces();
+		$this->data['user_data'] = $this->user_profile_model->selectUserProfile();
         $this->load->customer_template('profile/profile', $this->data);
 
     }
@@ -43,11 +43,11 @@ class Profile extends customer{
 		$return = $this->profile_model->checkUserProfile($data['user_id']);
 		//var_dump($return);exit;
 		if($return) {
-			$this->profile_model->UpdateUserProfile($data);
+			$this->user_profile_model->UpdateUserProfile($data);
 			redirect('Customer/profile/index');
 		} 
 		else {
-			$this->profile_model->insertUserProfile($data);
+			$this->user_profile_model->insertUserProfile($data);
 			redirect('Customer/profile/index');
 		}
 		

@@ -6,21 +6,14 @@ class Car extends Customer {
     public function __construct()
     {
 		parent::__construct();
-		$this->load->model('My_Model');
     }
 
     public function index()
     {
 		
-		$user_id = get_logindata('id');
-		
-		$this->setTable('showroom');
-		$this->data['showroom_list'] = $this->car_model->get('user_id', $user_id);
-		$this->setTable('showroom');
-		$this->data['model'] = $this->car_model->get_all();
-		$this->data['car'] = $this->car_model->selectAlLCarsByShowroom($user_id);
-		
-		$this->load->customer_template('cars', true);
+		$user_id = get_logindata('id');	
+		$this->data['cars'] = $this->rental_cars_model->selectAlLCarsByShowroom($user_id);		
+		$this->load->customer_template('cars', $this->data);
     }
 
     public function edit($id)
@@ -33,16 +26,16 @@ class Car extends Customer {
 		$this->load->customer_template('editcar', $data);
 	}
         
-    public function saveShowroom()
+    public function saveCar()
     {
-        $target_dir = "./assets/customer/img/uploads/showroom/";
-        $target_file = $target_dir . basename($_FILES["showroom_image"]["name"]);
+        $target_dir = "./assets/customer/img/uploads/cars/";
+        $target_file = $target_dir . basename($_FILES["car_image"]["name"]);
         $uploadOk = 1;
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
 
         if(isset($_POST["submit"])) {
 
-            $check = getimagesize($_FILES["showroom_image"]["tmp_name"]);
+            $check = getimagesize($_FILES["car_image"]["tmp_name"]);
             if($check !== false) {
                 echo "File is an image - " . $check["mime"] . ".";
                 $uploadOk = 1;
@@ -57,7 +50,7 @@ class Car extends Customer {
             $uploadOk = 0;
         }
         // Check file size
-        if ($_FILES["showroom_image"]["size"] > 500000) {
+        if ($_FILES["car_image"]["size"] > 500000) {
             echo "Sorry, your file is too large.";
             $uploadOk = 0;
         }
@@ -72,25 +65,30 @@ class Car extends Customer {
             echo "Sorry, your file was not uploaded.";
         // if everything is ok, try to upload file
         } else {
-            if (move_uploaded_file($_FILES["showroom_image"]["tmp_name"], $target_file)) {
-                    echo "The file ". basename( $_FILES["showroom_image"]["name"]). " has been uploaded.";
+            if (move_uploaded_file($_FILES["car_image"]["tmp_name"], $target_file)) {
+                    echo "The file ". basename( $_FILES["car_image"]["name"]). " has been uploaded.";
             } else {
                     echo "Sorry, there was an error uploading your file.";
             }
         }
-        $data = array(
-            'user_id' => $_SESSION['customer']['id'],
-            'showroom_name' => $_POST['showroom_name'],
-            'owner_name' => $_POST['showroom_owner'],
-            'description' => $_POST['description'],
-            'address' => $_POST['address'],
-            'province' => $_POST['province'],
-            'city' => $_POST['city'],
+        $this->data = array(
+            'showroom_id' => $_POST['showroom'],
+            'manufacturer_id' => $_POST['manufacturer'],
+            'car_id' => $_POST['car'],
+            'car_model' => $_POST['model'],
+            'car_description' => $_POST['description'],
+            'price_per_day' => $_POST['rent_per_day'],
+            'availability' => $_POST['availability'],
+			'available_date_from' => $_POST['availabile_date_from'],
+			'available_date_to' => $_POST['availabile_date_to'],
             'status' => $_POST['status'],
-            'showroom_image' => str_replace('.','',$target_dir) . $_FILES["showroom_image"]["name"]
+			'color' => $_POST['color'],
+			'door' => $_POST['door'],
+            'car_image' => str_replace('.','',$target_dir) . $_FILES["car_image"]["name"]
         );
-
-        $this->showroom_model->saveShowroom($data);
+		
+		//endinfo($this->data);
+        $this->rental_cars_model->insert($this->data);
         redirect('customer/car/index');
     }	
 
@@ -101,7 +99,7 @@ class Car extends Customer {
     }
     public function selectCarByManufacturer($id)
     {
-            $data['cars'] = $this->car_model->selectCarsByManufacturer($id);
+            $data['cars'] = $this->cars_model->selectCarsByManufacturer($id);
             echo json_encode($data);
     }	
     
@@ -109,10 +107,9 @@ class Car extends Customer {
     {
 		$user_id = get_logindata('id');
 		
-		$this->setTable('showroom');
-		$this->data['showroom_list'] = $this->car_model->get('user_id', $user_id);
-		//$this->data['model'] = $this->car_model->get_all();
-		$this->data['car'] = $this->car_model->selectAlLCarsByShowroom($user_id);
+		$this->data['showroom_list'] = $this->showroom_model->get('user_id', $user_id);
+		$this->data['manufacturers'] = $this->manufacturer_model->get_all();
+		$this->data['models'] = $this->models_model->get_all();
 		
 		$this->load->customer_template('addcars', $this->data);
     }	

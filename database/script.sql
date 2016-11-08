@@ -1,12 +1,12 @@
 -- --------------------------------------------------------
 -- Host:                         127.0.0.1
--- Server version:               5.6.17 - MySQL Community Server (GPL)
+-- Server version:               5.5.20-log - MySQL Community Server (GPL)
 -- Server OS:                    Win64
--- HeidiSQL Version:             8.0.0.4396
+-- HeidiSQL Version:             9.3.0.4984
 -- --------------------------------------------------------
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET NAMES utf8 */;
+/*!40101 SET NAMES utf8mb4 */;
 /*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
@@ -257,6 +257,7 @@ CREATE TABLE IF NOT EXISTS `rental_cars` (
   `car_model` int(11) DEFAULT NULL,
   `car_description` varchar(500) DEFAULT NULL,
   `price_per_day` decimal(18,2) DEFAULT NULL,
+  `fuel` varchar(15) DEFAULT NULL,
   `availability` bit(1) DEFAULT b'1',
   `available_date_from` datetime DEFAULT NULL,
   `available_date_to` datetime DEFAULT NULL,
@@ -266,11 +267,13 @@ CREATE TABLE IF NOT EXISTS `rental_cars` (
   `door` varchar(50) DEFAULT NULL,
   `date_added` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
   PRIMARY KEY (`rent_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 -- Dumping data for table car_rental.rental_cars: ~0 rows (approximately)
 DELETE FROM `rental_cars`;
 /*!40000 ALTER TABLE `rental_cars` DISABLE KEYS */;
+INSERT INTO `rental_cars` (`rent_id`, `showroom_id`, `manufacturer_id`, `car_id`, `car_model`, `car_description`, `price_per_day`, `fuel`, `availability`, `available_date_from`, `available_date_to`, `status`, `car_image`, `color`, `door`, `date_added`) VALUES
+	(1, 2, 2, 13, 2016, 'new', 8000.00, NULL, b'1', '2016-09-06 00:00:00', '2017-02-11 00:00:00', b'1', '/assets/customer/img/uploads/cars/honda-accord.jpg', 'black', '4', '2016-11-06 12:05:46');
 /*!40000 ALTER TABLE `rental_cars` ENABLE KEYS */;
 
 
@@ -291,11 +294,11 @@ CREATE TABLE IF NOT EXISTS `showroom` (
   PRIMARY KEY (`showroom_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table car_rental.showroom: ~10 rows (approximately)
+-- Dumping data for table car_rental.showroom: ~1 rows (approximately)
 DELETE FROM `showroom`;
 /*!40000 ALTER TABLE `showroom` DISABLE KEYS */;
 INSERT INTO `showroom` (`showroom_id`, `user_id`, `showroom_name`, `owner_name`, `description`, `address`, `province`, `city`, `status`, `showroom_image`, `date_added`) VALUES
-	(2, 1, 'abc showroom', 'abc owner', 'abc description', 'abc address', 1, 2, b'10000000', '/assets/customer/img/uploads/showroom/showroom.jpg', '2016-11-03 15:32:07');
+	(2, 1, 'abc showroom', 'abc owner', 'abc description', 'abc address', 1, 2, b'1', '/assets/customer/img/uploads/showroom/showroom.jpg', '2016-11-03 15:32:07');
 /*!40000 ALTER TABLE `showroom` ENABLE KEYS */;
 
 
@@ -351,11 +354,11 @@ CREATE TABLE IF NOT EXISTS `user_profile` (
   CONSTRAINT `FK_user_id_profile_id` FOREIGN KEY (`user_id`) REFERENCES `users` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1 COMMENT='Users personal data will be stored in this table';
 
--- Dumping data for table car_rental.user_profile: ~0 rows (approximately)
+-- Dumping data for table car_rental.user_profile: ~1 rows (approximately)
 DELETE FROM `user_profile`;
 /*!40000 ALTER TABLE `user_profile` DISABLE KEYS */;
 INSERT INTO `user_profile` (`profile_id`, `CNIC`, `contact_no`, `image`, `user_id`, `city_id`, `provinces_id`, `postal_code`, `DOB`, `address`, `Status`, `cover_image`, `about`, `date_added`) VALUES
-	(1, '123456789', '0123456789', '/uploads/photo.png', 1, 1, 2, 750750, '2016-11-24', '123 abc road ', b'10000000', '1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2016-11-03 13:19:19');
+	(1, '123456789', '0123456789', '/uploads/photo.png', 1, 1, 2, 750750, '2016-11-24', '123 abc road ', b'1', '1', 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.', '2016-11-03 13:19:19');
 /*!40000 ALTER TABLE `user_profile` ENABLE KEYS */;
 
 
@@ -368,7 +371,7 @@ CREATE TABLE IF NOT EXISTS `user_roles` (
   PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
 
--- Dumping data for table car_rental.user_roles: ~0 rows (approximately)
+-- Dumping data for table car_rental.user_roles: ~2 rows (approximately)
 DELETE FROM `user_roles`;
 /*!40000 ALTER TABLE `user_roles` DISABLE KEYS */;
 INSERT INTO `user_roles` (`role_id`, `role_desc`, `date_added`) VALUES

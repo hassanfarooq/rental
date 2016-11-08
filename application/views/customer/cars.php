@@ -98,6 +98,7 @@
 											<td class="text-left"><a href="" class="asc">Car Name</a></td>
 											<td class="text-left"><a href="$">Manufacturer</a></td>
 											<td class="text-left"><a href="#">Model</a></td>
+											<td class="text-left"><a href="#">Availability</a></td>
 											<td class="text-left"><a href="#">Status</a></td>
 											<td class="text-right">Action</td>
 										</tr>
@@ -112,6 +113,7 @@
 												<td class="text-left"><?php echo $row['car_name']; ?></td>
 												<td class="text-left"><?php echo $row['manf_name']; ?></td>
 												<td class="text-left"><?php echo $row['car_model']; ?></td>
+												<td class="text-left"><?php echo date("d-m-y", strtotime($row['available_date_from'])) . ' - ' . date("d-m-y", strtotime($row['available_date_to'])); ?></td>
 												<td class="text-left"><?php echo $row['status']; ?></td>
 												<td class="text-right"><a href="<?php echo site_url('customer/car/edit/').$row['rent_id']; ?>" data-toggle="tooltip" title="" class="btn btn-primary" data-original-title="Edit"><i class="fa fa-pencil"></i></a></td>
 											</tr>

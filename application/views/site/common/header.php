@@ -151,7 +151,7 @@
                 <!-- Nav-Links start -->
                 <ul class="nav navbar-nav navbar-right">
                   <li class="active"><a href="#" class="scroll-to">Home</a></li>
-                  <li><a href="#services" class="scroll-to">Show Rooms</a></li>
+                  <li><a href="<?php echo site_url('Showroom'); ?>" class="scroll-to">All Showrooms</a></li>
                   <li><a href="#vehicles" class="scroll-to">Cars</a></li>
                   <li><a href="#reviews" class="scroll-to">Reviews</a></li>
                   <li><a href="#locations" class="scroll-to">Locations</a></li>
