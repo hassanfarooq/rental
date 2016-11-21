@@ -759,6 +759,7 @@
 
 
 <!-- Partners start -->
+<?php if($showroom) { ?>
 <section id="partners" class="wow fadeIn" data-wow-offset="50">
   <div class="container">
     <div class="row">
@@ -767,21 +768,18 @@
         <span class="underline">&nbsp;</span>
         <p>Free, easy & fast car hire</p>
       </div>
-      <div class="col-md-3 col-xs-6 text-center">
-        <img src="<?php echo base_url('assets/site/img/partner1.png'); ?>" alt="Partner" class="img-responsive wow fadeInUp" data-wow-delay="0.5s" data-wow-offset="200">
-      </div>
-      <div class="col-md-3 col-xs-6 text-center">
-        <img src="<?php echo base_url('assets/site/img/partner2.png'); ?>" alt="Partner" class="img-responsive wow fadeInUp" data-wow-delay="1s" data-wow-offset="200">
-      </div>
-      <div class="col-md-3 col-xs-6 text-center">
-        <img src="<?php echo base_url('assets/site/img/partner3.png'); ?>" alt="Partner" class="img-responsive wow fadeInUp" data-wow-delay="1.5s" data-wow-offset="200">
-      </div>
-      <div class="col-md-3 col-xs-6 text-center">
-        <img src="<?php echo base_url('assets/site/img/partner4.png'); ?>" alt="Partner" class="img-responsive wow fadeInUp" data-wow-delay="2s" data-wow-offset="200">
-      </div>
+		<?php $counter = 0; ?>
+		<?php foreach($showroom as $row) { ?>
+		<?php if(++$counter <= 4) ?>
+			<div class="col-md-3 col-xs-6 text-center">
+				<img src="<?php echo base_url() . $row['showroom_image'] ?>" alt="Partner" class="img-responsive wow fadeInUp" data-wow-delay="0.5s" data-wow-offset="200">
+			</div>
+		<?php } ?>
     </div>
   </div>
-</section>
+</section>	
+<?php } ?>
+
 <!-- Partners end -->
 
 

@@ -8,6 +8,7 @@ class Home extends Site {
 		$this->data['provinces'] = $this->home_model->selectAllProvinces();
 		$this->data['cities'] = $this->home_model->selectAllCities();
 		$this->data['manufacturer'] = $this->home_model->selectAllManufacturer();
+		$this->data['showroom'] = $this->showroom_model->get_all();
 		$this->load->site_template('template', $this->data);
 	}
 

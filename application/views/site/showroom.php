@@ -22,21 +22,6 @@
 					<option>Select City</option>
 				  </select>
 				</div>
-				<div class="form-group">
-				  <select name="manufacturer-select" id="search-select-manufacturer" class="form-control">
-					<?php if($manufacturer) { ?>
-						<?php foreach($manufacturer as $row) { ?>
-							<option>Select Manufacturer</option>	
-							<option value="<?php echo $row['manf_id']; ?>"><?php echo $row['manf_name']; ?></option>
-						<?php } ?>
-					<?php } ?>
-				  </select>
-				</div>
-				<div class="form-group">
-				<select name="car-select" id="search-select-car" class="form-control">
-					<option>Select Car</option>	
-				  </select>
-				</div>
 				<div class="search-filter">
 					<input id="filter" name="submit" type="submit" value="Seach" class="btn btn-yellow btn-block">
 				</div>
@@ -63,27 +48,38 @@
 			</div>
 		</div>
 		<div class="items">
-			<div class="entry-media">
-				<div class="entry-slide">
-					<div class="entry-carousel owl-carousel owl-carousel-inset owl-loaded owl-drag">
-						<div class="owl-stage-outer">
-							<div class="owl-stage" style="transform: translate3d(-1696px, 0px, 0px); transition: 0s; width: 2544px;">
-								<div class="owl-item" style="width: 848px;">
-									<div>
-										<img src="./img/samples/posts/sidebar/1.jpg" alt="">
-									</div>
+			<?php if($showroom) { ?>
+				<?php foreach($showroom as $row) { ?>
+					<div class="cover">
+						<img src="<?php echo base_url('slide1.png'); ?>" class="img-responsive">
+					</div>
+					<div class="row btn-yellow">
+						<div class="col-md-3">
+							<div class="showroom-img">
+								<img src="<?php echo base_url() . $row['showroom_image']; ?>" class="img-responsive">
+							</div>
+						</div>
+						<div class="col-md-9">
+							<div class="row">
+								<div class="col-md-8">
+									<h3 style="margin:10px 0px 0px 0px"><?php echo $row['showroom_name']; ?></h3>
 								</div>
-								<div class="owl-item" style="width: 848px;">
-									<div>
-										<img src="./img/samples/posts/sidebar/1.jpg" alt="">
-									</div>
+								<div class="col-md-4">
+									<h4>No of car(s): </h4>
 								</div>
-								<div class="owl-item active" style="width: 848px;">
-									<div>
-										<img src="./img/samples/posts/sidebar/1.jpg" alt="">
-                                    </div></div></div></div><div class="owl-nav"><div class="owl-prev">prev</div><div class="owl-next disabled">next</div></div><div class="owl-dots disabled"></div></div>
-                                    </div>
-                                </div>
+							</div>
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-3"></div>
+						<div class="col-md-9">
+							<p>Owner Name: <?php echo $row['owner_name']; ?>
+							Owner Name: <?php echo $row['description']; ?>
+							Location: <?php echo $row['address']; ?></p>
+						</div>
+					</div>
+				<?php } ?>
+			<?php } ?>
 		</div>
 	</div>
 </div>
