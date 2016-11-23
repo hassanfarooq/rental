@@ -20,8 +20,7 @@ class Car extends Customer {
 	{
             $user_id = $_SESSION['customer']['id'];
 		$data = array(
-			'car' => $this->car_model->selectCarByCarId($id)
-			//'province' => $this->showroom_model->selectAllProvinces()
+            'car' => $this->cars_model->selectById($id)
 		);
 		$this->load->customer_template('editcar', $data);
 	}
@@ -112,5 +111,11 @@ class Car extends Customer {
 		$this->data['models'] = $this->models_model->get_all();
 		
 		$this->load->customer_template('addcars', $this->data);
+    }
+
+    public function updateCar()
+    {
+        $this->rental_cars_model->update($this->data);
+        $this->load->customer_template('addcars', $this->data);
     }	
 }
