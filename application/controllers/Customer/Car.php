@@ -1,13 +1,11 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
-
 class Car extends Customer {
 	
     public function __construct()
     {
 		parent::__construct();
     }
-
     public function index()
     {
 		
@@ -15,13 +13,11 @@ class Car extends Customer {
 		$this->data['cars'] = $this->rental_cars_model->selectAlLCarsByShowroom($user_id);		
 		$this->load->customer_template('cars', $this->data);
     }
-
     public function edit($id)
 	{
             $user_id = $_SESSION['customer']['id'];
 		$data = array(
-			'car' => $this->car_model->selectCarByCarId($id)
-			//'province' => $this->showroom_model->selectAllProvinces()
+            'car' => $this->cars_model->selectById($id)
 		);
 		$this->load->customer_template('editcar', $data);
 	}
@@ -32,9 +28,7 @@ class Car extends Customer {
         $target_file = $target_dir . basename($_FILES["car_image"]["name"]);
         $uploadOk = 1;
         $imageFileType = pathinfo($target_file,PATHINFO_EXTENSION);
-
         if(isset($_POST["submit"])) {
-
             $check = getimagesize($_FILES["car_image"]["tmp_name"]);
             if($check !== false) {
                 echo "File is an image - " . $check["mime"] . ".";
@@ -44,7 +38,6 @@ class Car extends Customer {
                 $uploadOk = 0;
             }
         }
-
         if (file_exists($target_file)) {
             echo "Sorry, file already exists.";
             $uploadOk = 0;
@@ -91,7 +84,6 @@ class Car extends Customer {
         $this->rental_cars_model->insert($this->data);
         redirect('customer/car/index');
     }	
-
     public function selectCitiesByProvinceId($id)
     {
             $data['cities'] = $this->car_model->selectCitiesByProvince($id);
@@ -112,5 +104,11 @@ class Car extends Customer {
 		$this->data['models'] = $this->models_model->get_all();
 		
 		$this->load->customer_template('addcars', $this->data);
+    }
+    public function updateCar()
+    {
+		$this->data['car'] = $_POST;
+        $this->rental_cars_model->update($this->data['car'], 'rent_id', $this->data['car']['rent_id'] );
+        redirect('customer/car/index');
     }	
 }

@@ -62,7 +62,7 @@
 						<div class="col-md-9">
 							<div class="row">
 								<div class="col-md-8">
-									<h3 style="margin:10px 0px 0px 0px"><?php echo $row['showroom_name']; ?></h3>
+									<h3 style="margin:6px 0px 0px 0px"><?php echo $row['showroom_name']; ?></h3>
 								</div>
 								<div class="col-md-4">
 									<h4>No of car(s): </h4>
@@ -73,9 +73,9 @@
 					<div class="row">
 						<div class="col-md-3"></div>
 						<div class="col-md-9">
-							<p>Owner Name: <?php echo $row['owner_name']; ?>
-							Owner Name: <?php echo $row['description']; ?>
-							Location: <?php echo $row['address']; ?></p>
+							<p class="showroom-info"><strong>Owner Name: </strong><?php echo $row['owner_name']; ?></p>
+							<p><strong>Showroom Description: </strong><?php echo $row['description']; ?></p>
+							<p><strong>Location: </strong><?php echo $row['address']; ?></p>
 						</div>
 					</div>
 				<?php } ?>

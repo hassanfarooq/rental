@@ -11,13 +11,11 @@
 /*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
 
 -- Dumping database structure for car_rental
-DROP DATABASE IF EXISTS `car_rental`;
 CREATE DATABASE IF NOT EXISTS `car_rental` /*!40100 DEFAULT CHARACTER SET latin1 */;
 USE `car_rental`;
 
 
 -- Dumping structure for table car_rental.cars
-DROP TABLE IF EXISTS `cars`;
 CREATE TABLE IF NOT EXISTS `cars` (
   `car_id` int(11) NOT NULL AUTO_INCREMENT,
   `car_name` varchar(200) NOT NULL,
@@ -68,7 +66,6 @@ INSERT INTO `cars` (`car_id`, `car_name`, `manf_id`, `image`, `date_added`) VALU
 
 
 -- Dumping structure for table car_rental.cities
-DROP TABLE IF EXISTS `cities`;
 CREATE TABLE IF NOT EXISTS `cities` (
   `city_id` int(10) NOT NULL AUTO_INCREMENT,
   `city_name` varchar(150) DEFAULT NULL,
@@ -153,7 +150,6 @@ INSERT INTO `cities` (`city_id`, `city_name`, `province_id`, `data_added`) VALUE
 
 
 -- Dumping structure for table car_rental.manufacturer
-DROP TABLE IF EXISTS `manufacturer`;
 CREATE TABLE IF NOT EXISTS `manufacturer` (
   `manf_id` int(11) NOT NULL AUTO_INCREMENT,
   `manf_name` varchar(200) NOT NULL,
@@ -176,7 +172,6 @@ INSERT INTO `manufacturer` (`manf_id`, `manf_name`, `date_added`) VALUES
 
 
 -- Dumping structure for table car_rental.models
-DROP TABLE IF EXISTS `models`;
 CREATE TABLE IF NOT EXISTS `models` (
   `model_id` int(11) NOT NULL AUTO_INCREMENT,
   `model` int(4) NOT NULL,
@@ -228,7 +223,6 @@ INSERT INTO `models` (`model_id`, `model`) VALUES
 
 
 -- Dumping structure for table car_rental.provinces
-DROP TABLE IF EXISTS `provinces`;
 CREATE TABLE IF NOT EXISTS `provinces` (
   `provinces_id` int(10) NOT NULL AUTO_INCREMENT,
   `provinces_name` varchar(30) DEFAULT NULL,
@@ -248,7 +242,6 @@ INSERT INTO `provinces` (`provinces_id`, `provinces_name`, `date_added`) VALUES
 
 
 -- Dumping structure for table car_rental.rental_cars
-DROP TABLE IF EXISTS `rental_cars`;
 CREATE TABLE IF NOT EXISTS `rental_cars` (
   `rent_id` int(11) NOT NULL AUTO_INCREMENT,
   `showroom_id` int(11) NOT NULL,
@@ -269,16 +262,15 @@ CREATE TABLE IF NOT EXISTS `rental_cars` (
   PRIMARY KEY (`rent_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
--- Dumping data for table car_rental.rental_cars: ~0 rows (approximately)
+-- Dumping data for table car_rental.rental_cars: ~1 rows (approximately)
 DELETE FROM `rental_cars`;
 /*!40000 ALTER TABLE `rental_cars` DISABLE KEYS */;
 INSERT INTO `rental_cars` (`rent_id`, `showroom_id`, `manufacturer_id`, `car_id`, `car_model`, `car_description`, `price_per_day`, `fuel`, `availability`, `available_date_from`, `available_date_to`, `status`, `car_image`, `color`, `door`, `date_added`) VALUES
-	(1, 2, 2, 13, 2016, 'new', 8000.00, NULL, b'1', '2016-09-06 00:00:00', '2017-02-11 00:00:00', b'1', '/assets/customer/img/uploads/cars/honda-accord.jpg', 'black', '4', '2016-11-06 12:05:46');
+	(1, 2, 2, 13, 2016, 'new car by me to', 8000.00, '', b'1', '2016-11-06 00:00:00', '2016-12-23 00:00:00', b'1', '/assets/customer/img/uploads/cars/honda-accord.jpg', 'black', '4', '2016-11-23 12:09:12');
 /*!40000 ALTER TABLE `rental_cars` ENABLE KEYS */;
 
 
 -- Dumping structure for table car_rental.showroom
-DROP TABLE IF EXISTS `showroom`;
 CREATE TABLE IF NOT EXISTS `showroom` (
   `showroom_id` int(11) NOT NULL AUTO_INCREMENT,
   `user_id` int(11) DEFAULT NULL,
@@ -303,7 +295,6 @@ INSERT INTO `showroom` (`showroom_id`, `user_id`, `showroom_name`, `owner_name`,
 
 
 -- Dumping structure for table car_rental.users
-DROP TABLE IF EXISTS `users`;
 CREATE TABLE IF NOT EXISTS `users` (
   `user_id` int(11) NOT NULL AUTO_INCREMENT,
   `username` varchar(200) NOT NULL,
@@ -329,7 +320,6 @@ INSERT INTO `users` (`user_id`, `username`, `password`, `email`, `date_added`, `
 
 
 -- Dumping structure for table car_rental.user_profile
-DROP TABLE IF EXISTS `user_profile`;
 CREATE TABLE IF NOT EXISTS `user_profile` (
   `profile_id` int(20) NOT NULL AUTO_INCREMENT,
   `CNIC` varchar(15) NOT NULL,
@@ -363,7 +353,6 @@ INSERT INTO `user_profile` (`profile_id`, `CNIC`, `contact_no`, `image`, `user_i
 
 
 -- Dumping structure for table car_rental.user_roles
-DROP TABLE IF EXISTS `user_roles`;
 CREATE TABLE IF NOT EXISTS `user_roles` (
   `role_id` int(11) NOT NULL AUTO_INCREMENT,
   `role_desc` varchar(50) DEFAULT NULL,
