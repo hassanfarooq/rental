@@ -105,18 +105,11 @@ class Car extends Customer {
 		
 		$this->load->customer_template('addcars', $this->data);
     }
-<<<<<<< HEAD
+
     public function updateCar()
     {
 		$this->data['car'] = $_POST;
         $this->rental_cars_model->update($this->data['car'], 'rent_id', $this->data['car']['rent_id'] );
         redirect('customer/car/index');
-=======
-
-    public function updateCar()
-    {
-        $this->rental_cars_model->update($this->data);
-        $this->load->customer_template('addcars', $this->data);
->>>>>>> 9d53248b280aca2cf02dc9a371c2732fc77812f0
     }	
 }
