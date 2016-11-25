@@ -20,17 +20,27 @@
                     <div class="panel-body">
 						<form action="<?php echo site_url('customer/car/updateCar');?> " method="post" enctype="multipart/form-data" id="form-product">
 						<?php foreach($car as $row) { ?>
+<<<<<<< HEAD
 						<input type="hidden" value="<?php echo $row['rent_id']; ?> " name="rent_id">
 							<div class="form-group">
 								<label class="control-label">Select Showroom</label>
 								<select name="showroom_id" class="form-control">
+=======
+							<div class="form-group">
+								<label class="control-label">Select Showroom</label>
+								<select name="showroom" class="form-control">
+>>>>>>> 9d53248b280aca2cf02dc9a371c2732fc77812f0
 										<option value="<?php echo $row['showroom_id']; ?>"><?php echo $row['showroom_name']; ?></option>
 								</select>
 							</div>
 							
 							<div class="form-group">
 								<label class="control-label" for="input-model">Select Manufacturer</label>
+<<<<<<< HEAD
 								<select class="form-control" name="manufacturer_id" id="select-manufacturer">
+=======
+								<select class="form-control" name="manufacturer" id="select-manufacturer">
+>>>>>>> 9d53248b280aca2cf02dc9a371c2732fc77812f0
 									<!--<option value="0">Select Manufacturer</option>
 									<?php //foreach($manufacturers as $row) { ?>-->
 										<option value="<?php echo $row['manf_id']; ?>"><?php echo $row['manf_name']; ?></option>
@@ -40,14 +50,22 @@
 							
 							<div class="form-group">
 								<label class="control-label" for="input-model">Select Car</label>
+<<<<<<< HEAD
 								<select class="form-control" name="car_id" id="select-car">
+=======
+								<select class="form-control" name="car" id="select-car">
+>>>>>>> 9d53248b280aca2cf02dc9a371c2732fc77812f0
 									<option value="<?php echo $row['car_id']; ?>"><?php echo $row['car_name']; ?></option>
 								</select>
 							</div>
 							
 							<div class="form-group">
 								<label class="control-label" for="input-model">Select Model</label>
+<<<<<<< HEAD
 								<select class="form-control" name="car_model">
+=======
+								<select class="form-control" name="model">
+>>>>>>> 9d53248b280aca2cf02dc9a371c2732fc77812f0
 										<option value="<?php echo $row['car_model']; ?>"><?php echo $row['car_model']; ?></option>								
 								</select>
 							</div>
@@ -61,12 +79,20 @@
 							
 							<div class="form-group">
 								<label class="control-label" for="input-model">Rent Per Day</label>
+<<<<<<< HEAD
 								<input type="text" name="price_per_day" value="<?php echo $row['price_per_day']; ?>" placeholder="Rent per day" id="input-location" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
+=======
+								<input type="text" name="rent_per_day" value="<?php echo $row['price_per_day']; ?>" placeholder="Rent per day" id="input-location" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
+>>>>>>> 9d53248b280aca2cf02dc9a371c2732fc77812f0
 							</div>
 						
 							<div class="form-group">
 								<label class="control-label" for="input-model">Description</label>
+<<<<<<< HEAD
 								<input type="text" name="car_description" value="<?php echo $row['car_description']; ?>" placeholder="Description" id="input-location" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
+=======
+								<input type="text" name="description" value="<?php echo $row['car_description']; ?>" placeholder="Description" id="input-location" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
+>>>>>>> 9d53248b280aca2cf02dc9a371c2732fc77812f0
 							</div>
 							
 							<div class="form-group">
@@ -94,12 +120,20 @@
 							<div class="form-group">
 								<label class="control-label" for="input-model">Available Date From</label>
 								
+<<<<<<< HEAD
 								<input type="date" name="available_date_from" value="<?php echo date('mm/dd/yyyy',strtotime($row['available_date_from'])); ?>" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
+=======
+								<input type="date" name="availabile_date_from" value="<?php echo date('mm/dd/yyyy',strtotime($row['available_date_from'])); ?>" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
+>>>>>>> 9d53248b280aca2cf02dc9a371c2732fc77812f0
 							</div>
 							
 							<div class="form-group">
 								<label class="control-label" for="input-model">Available Date To</label>
+<<<<<<< HEAD
 								<input type="date" name="available_date_to" value="<?php echo date('mm/dd/yyyy',strtotime($row['available_date_from'])); ?>" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
+=======
+								<input type="date" name="availabile_date_to" value="<?php echo date('mm/dd/yyyy',strtotime($row['available_date_from'])); ?>" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
+>>>>>>> 9d53248b280aca2cf02dc9a371c2732fc77812f0
 							</div>
 							
 							<div class="form-group">
