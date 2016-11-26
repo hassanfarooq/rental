@@ -30,20 +30,21 @@
 							<div class="form-group">
 								<label class="control-label" for="input-model">Showroom Owner Name</label>
 								<input type="text" name="showroom_owner" value="" placeholder="Showroom Owner Name" id="input-location" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
-						  </div>
+							</div>
 						
 							<div class="form-group">
 								<label class="control-label" for="input-model">Description</label>
 								<input type="text" name="description" value="" placeholder="Description" id="input-location" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
-						  </div>
+							</div>
 						
 							<div class="form-group">
 								<label class="control-label" for="input-model">Address</label>
 								<input type="text" name="address" value="" placeholder="Address" id="input-location" class="form-control" autocomplete="off"><ul class="dropdown-menu"></ul>
-						  </div>
+							</div>
 							<div class="form-group">
 								<label class="control-label" for="input-status">Select Province</label>
 								<select name="province" id="select-province" class="form-control">
+									<option>Select Province</option>
 									<?php 
 										foreach($province as $row) { ?>
 											<option value="<?php echo $row['provinces_id']; ?>"><?php echo $row['provinces_name']; ?></option>
@@ -64,6 +65,12 @@
 									<option value="0">Disable</option>
 								</select>
 							</div>
+							<div class="form-group">
+								<label class="control-label" for="input-status">Showroom Cover Image</label>
+								<input type="file" name="showroom_cover_image">
+								<small>Cover image size: 980px x 250px</small>
+							</div>
+							
 							<div class="form-group">
 								<label class="control-label" for="input-status">Showroom Image</label>
 								<input type="file" name="showroom_image">

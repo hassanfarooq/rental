@@ -111,5 +111,5 @@ class Car extends Customer {
 		$this->data['car'] = $_POST;
         $this->rental_cars_model->update($this->data['car'], 'rent_id', $this->data['car']['rent_id'] );
         redirect('customer/car/index');
-    }	
+    }
 }

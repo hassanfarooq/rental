@@ -25,17 +25,6 @@ class showroom_model extends MY_Model {
         return false;
     }
         
-    public function selectById($id)
-    {
-        $sql = "select * from showroom where showroom_id = ".$id;
-        $result = $this->db->query($sql);
-        if($result->num_rows() > 0) {
-            $result = $result->result_array();
-            return $result;
-        }
-        return false;
-    }
-        
     public function selectAllShowrooms($id)
     {
         $sql = "select 
